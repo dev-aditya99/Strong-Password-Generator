@@ -5,6 +5,9 @@ import { IoCopyOutline } from "react-icons/io5";
 import CommonLoader from "../components/loaders/CommonLoader";
 
 const Home = () => {
+  // env variable
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
   // refs
   const toggleRef = useRef(null);
 
@@ -26,7 +29,7 @@ const Home = () => {
   const generate = () => {
     setIsLoader(true);
     axios
-      .post("http://localhost:5000/auth/generate-password", {
+      .post(BACKEND_URL + "/auth/generate-password", {
         toggleValue: isToggle,
       })
       .then((success) => {
