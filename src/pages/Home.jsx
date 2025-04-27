@@ -33,8 +33,12 @@ const Home = () => {
         toggleValue: isToggle,
       })
       .then((success) => {
-        // localStorage.setItem("input-value", success.data);
         setInputValue(success.data);
+        toast.success(
+          isToggle
+            ? "PIN Generated Successfully!"
+            : "Password Generated Successfully!"
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -123,7 +127,11 @@ const Home = () => {
 
         {/* Generate Password btn  */}
         <button
-          className="mt-3 w-full min-[400px]:py-4 py-3 px-2 text-center bg-purple-700 text-white text-lg tracking-wide font-bold rounded-md hover:bg-purple-800 active:bg-purple-800/50 duration-200 flex items-center justify-center gap-2"
+          className={`mt-3 w-full min-[400px]:py-4 py-3 px-2 text-center bg-purple-700 text-white text-lg tracking-wide font-bold rounded-md duration-200 flex items-center justify-center gap-2 ${
+            isLoader
+              ? "bg-purple-800/50"
+              : "hover:bg-purple-800 active:bg-purple-800/50"
+          }`}
           onClick={generate}
         >
           Generate
