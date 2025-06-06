@@ -97,7 +97,7 @@ const Home = () => {
             autoFocus
             placeholder="Your Password or PIN"
             value={inputValue}
-            onClick={copyPassword}
+            onChange={copyPassword}
           />
 
           {/* copy btn  */}
