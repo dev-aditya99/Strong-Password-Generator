@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { IoCopyOutline } from "react-icons/io5";
 import CommonLoader from "../components/loaders/CommonLoader";
+import generatePassOrPin from "../utils/generatePassOrPin";
 
 const Home = () => {
   // env variable
@@ -26,27 +27,45 @@ const Home = () => {
   };
 
   //   generate
+  // const generate = () => {
+  //   setIsLoader(true);
+  //   axios
+  //     .post(BACKEND_URL + "/auth/generate-password", {
+  //       toggleValue: isToggle,
+  //     })
+  //     .then((success) => {
+  //       setInputValue(success.data);
+  //       toast.success(
+  //         isToggle
+  //           ? "PIN Generated Successfully!"
+  //           : "Password Generated Successfully!"
+  //       );
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       toast.error(err.message);
+  //     })
+  //     .finally(() => {
+  //       setIsLoader(false);
+  //     });
+  // };
+
   const generate = () => {
-    setIsLoader(true);
-    axios
-      .post(BACKEND_URL + "/auth/generate-password", {
-        toggleValue: isToggle,
-      })
-      .then((success) => {
-        setInputValue(success.data);
-        toast.success(
-          isToggle
-            ? "PIN Generated Successfully!"
-            : "Password Generated Successfully!"
-        );
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error(err.message);
-      })
-      .finally(() => {
-        setIsLoader(false);
-      });
+    try {
+      setIsLoader(true);
+      const response = generatePassOrPin(isToggle);
+      setInputValue(response);
+      toast.success(
+        isToggle
+          ? "PIN Generated Successfully!"
+          : "Password Generated Successfully!"
+      );
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    } finally {
+      setIsLoader(false);
+    }
   };
 
   //   copy password
