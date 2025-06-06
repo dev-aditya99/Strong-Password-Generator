@@ -71,7 +71,7 @@ const Home = () => {
 
   //   copy password
   const copyPassword = (response) => {
-    if (inputValue == "") {
+    if (response == "") {
       navigator.clipboard.writeText("Bhai pehale generate to karle!");
       toast.error("Bhai pehale generate to karle!");
     } else {
