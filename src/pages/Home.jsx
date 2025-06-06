@@ -65,6 +65,7 @@ const Home = () => {
       toast.error(error.message);
     } finally {
       setIsLoader(false);
+      copyPassword();
     }
   };
 
@@ -97,7 +98,6 @@ const Home = () => {
             autoFocus
             placeholder="Your Password or PIN"
             value={inputValue}
-            onChange={copyPassword}
           />
 
           {/* copy btn  */}
