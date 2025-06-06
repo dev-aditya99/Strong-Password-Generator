@@ -60,22 +60,22 @@ const Home = () => {
           ? "PIN Generated Successfully!"
           : "Password Generated Successfully!"
       );
+      copyPassword(response);
     } catch (error) {
       console.log(error);
       toast.error(error.message);
     } finally {
       setIsLoader(false);
-      copyPassword();
     }
   };
 
   //   copy password
-  const copyPassword = () => {
+  const copyPassword = (response) => {
     if (inputValue == "") {
       navigator.clipboard.writeText("Bhai pehale generate to karle!");
       toast.error("Bhai pehale generate to karle!");
     } else {
-      navigator.clipboard.writeText(inputValue);
+      navigator.clipboard.writeText(response);
       toast.success("Copied!");
     }
   };
